@@ -1,12 +1,12 @@
 <template>
-  <Switchchild v-model:value="y" />
+  <Switchdemo v-model:value="y" />
 </template>
 <script lang="ts">
 import { ref } from "vue";
-import Switchchild from "../components/Switchpage/Switchchild.vue";
+import Switchdemo from "../components/Switchpage/Switchdemo.vue";
 export default {
   components: {
-    Switchchild,
+    Switchdemo,
   },
   setup() {
     const y = ref<boolean>(true);
