@@ -3,7 +3,7 @@
 </template>
 <script lang="ts">
 import { ref } from "vue";
-import Switchchild from "./components/Switchchild.vue";
+import Switchchild from "../components/Switchpage/Switchchild.vue";
 export default {
   components: {
     Switchchild,
