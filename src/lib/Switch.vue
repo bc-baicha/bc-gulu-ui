@@ -1,5 +1,5 @@
 <template>
-  <div class="switch_wrap">
+  <div class="bc-switch_wrap">
     <button @click="toggle" :class="{ checked: value }"><span></span></button>
   </div>
 </template>
@@ -16,10 +16,10 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 $h: 22px;
 $h2: $h - 4px;
-.switch_wrap {
+.bc-switch_wrap {
   button {
     height: $h;
     width: $h * 2;

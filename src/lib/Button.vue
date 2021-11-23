@@ -1,6 +1,6 @@
 <template>
-  <!-- :class="`theme-${theme}`" -->
-  <button class="gulu-button" :class="classes">
+  <!-- :class="`bc-${theme}`" -->
+  <button class="bc-button" :class="classes">
     <slot />
   </button>
 </template>
