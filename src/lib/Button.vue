@@ -1,6 +1,6 @@
 <template>
-  <!-- :class="`bc-${theme}`" -->
-  <button class="bc-button" :class="classes">
+  <!-- :class="`bc-${theme} bc-${size}`" -->
+  <button :disabled="disable" class="bc-button" :class="classes">
     <slot />
   </button>
 </template>
@@ -12,16 +12,30 @@ export default {
       type: String,
       default: "button",
     },
+    size: {
+      type: String,
+      default: "normal",
+    },
+    disable: {
+      type: Boolean,
+      default: false,
+    },
+    loading: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props) {
-    const { theme } = props;
+    const { theme, size } = props;
     const classes = computed(() => {
       return {
         [`bc-${theme}`]: theme,
+        [`bc-${size}`]: size,
       };
     });
     return { classes };
   },
+
   // computed: { //vue2的语法
   //   classes: function () {
   //     return {

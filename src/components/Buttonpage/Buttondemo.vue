@@ -4,6 +4,10 @@
   <Button theme="button">你好</Button>
   <Button theme="link">你好</Button>
   <Button theme="text">你好</Button>
+  <Button>你好</Button>
+  <Button size="normal" loading theme="button">你好</Button>
+  <Button size="small" theme="link">你好</Button>
+  <Button size="big" theme="text">你好</Button>
 </template>
 
 <script lang="ts">
