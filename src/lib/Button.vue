@@ -1,14 +1,33 @@
 <template>
-  <h1>Button 示例</h1>
-  <Buttondemo> 你好 </Buttondemo>
+  <!-- :class="`theme-${theme}`" -->
+  <button class="gulu-button" :class="classes">
+    <slot />
+  </button>
 </template>
-
 <script lang="ts">
-import Buttondemo from "../components/Buttonpage/Buttondemo.vue";
+import { computed } from "vue";
 export default {
-  components: {
-    Buttondemo,
+  props: {
+    theme: {
+      type: String,
+      default: "button",
+    },
   },
-  setup() {},
+  setup(props) {
+    const { theme } = props;
+    const classes = computed(() => {
+      return {
+        [`bc-${theme}`]: theme,
+      };
+    });
+    return { classes };
+  },
+  // computed: { //vue2的语法
+  //   classes: function () {
+  //     return {
+  //       [`bc-${this.theme}`]: this.theme,
+  //     };
+  //   },
+  // },
 };
 </script>

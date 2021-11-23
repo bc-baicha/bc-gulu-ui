@@ -1,19 +1,16 @@
 <template>
-  <div class="switch_wrap">
-    <button @click="toggle" :class="{ checked: value }"><span></span></button>
-  </div>
+  <Switch v-model:value="y" />
 </template>
 <script lang="ts">
-import "./index.scss";
+import { ref } from "vue";
+import Switch from "../../lib/Switch.vue";
 export default {
-  props: {
-    value: Boolean,
+  components: {
+    Switch,
   },
-  setup(props, context) {
-    const toggle = () => {
-      context.emit("update:value", !props.value);
-    };
-    return { toggle };
+  setup() {
+    const y = ref<boolean>(true);
+    return { y };
   },
 };
 </script>

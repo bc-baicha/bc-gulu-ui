@@ -1,1 +1,3 @@
-<template>Dialog 组件</template>
+<template>
+  <slot />
+</template>
