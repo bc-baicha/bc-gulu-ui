@@ -1,22 +1,24 @@
 <template>
   <template v-if="visible">
-    <div class="bc-dialog-overlay" @click="closeClickOverlay"></div>
-    <div class="bc-dialog-wrapper">
-      <div class="bc-dialog">
-        <header>
-          <!-- {{ title }}  -->
-          <slot name="title" />
-          <span @click="onClose" class="bc-dialog-close"></span>
-        </header>
-        <main>
-          <slot name="content" />
-        </main>
-        <footer>
-          <Button @click="onClose">{{ okText }}</Button>
-          <Button @click="onClose">{{ cancelText }}</Button>
-        </footer>
+    <Teleport to="body">
+      <div class="bc-dialog-overlay" @click="closeClickOverlay"></div>
+      <div class="bc-dialog-wrapper">
+        <div class="bc-dialog">
+          <header>
+            <!-- {{ title }}  -->
+            <slot name="title" />
+            <span @click="onClose" class="bc-dialog-close"></span>
+          </header>
+          <main>
+            <slot name="content" />
+          </main>
+          <footer>
+            <Button @click="onClose">{{ okText }}</Button>
+            <Button @click="onClose">{{ cancelText }}</Button>
+          </footer>
+        </div>
       </div>
-    </div>
+    </Teleport>
   </template>
 </template>
 <script lang="ts">
