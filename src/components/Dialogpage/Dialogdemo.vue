@@ -5,11 +5,17 @@
     <Dialog
       v-model:visible="visible"
       :onCloseOverlay="false"
-      title="这是标题"
       okText="确定"
       cancelText="取消"
     >
-      <h4>这是Dialog可配置内容</h4>
+      <template v-slot:title>
+        <strong>这是标题</strong>
+      </template>
+      <template v-slot:content>
+        <!-- 具名插槽 -->
+        <h1>则是</h1>
+        <h4>这是Dialog可配置内容</h4>
+      </template>
     </Dialog>
   </div>
 </template>

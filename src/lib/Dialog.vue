@@ -4,10 +4,12 @@
     <div class="bc-dialog-wrapper">
       <div class="bc-dialog">
         <header>
-          {{ title }} <span @click="onClose" class="bc-dialog-close"></span>
+          <!-- {{ title }}  -->
+          <slot name="title" />
+          <span @click="onClose" class="bc-dialog-close"></span>
         </header>
         <main>
-          <slot />
+          <slot name="content" />
         </main>
         <footer>
           <Button @click="onClose">{{ okText }}</Button>
@@ -29,10 +31,10 @@ export default {
       type: Boolean,
       default: true,
     },
-    title: {
-      type: String,
-      default: "标题",
-    },
+    // title: {
+    //   type: String,
+    //   default: "标题",
+    // },
     cancelText: {
       type: String,
       default: "Cancel",
