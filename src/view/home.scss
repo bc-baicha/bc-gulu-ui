@@ -42,7 +42,7 @@
     width: 100%;
     margin: 0 auto;
     margin-top: 30px;
-    cursor: default;
+    cursor: crosshair;
     @media (max-width: 740px) {
       width: 100%;
     }
@@ -54,10 +54,9 @@
     }
     .home_main_box {
       display: flex;
-      justify-content: center;
       align-items: center;
       min-width: 350px;
-      color: #3f5efb;
+      color: #4d0c19;
       margin: 10px 10px;
       .box_right {
         margin-left: 10px;
