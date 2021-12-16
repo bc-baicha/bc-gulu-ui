@@ -2,9 +2,14 @@
   <div class="topnav">
     <div class="wrap">
       <span v-if="isShowtoggle" class="toggle" @click="toggleMenu">
-        <svg>
-          <use xlink:href="#icon-zhedie"></use>
-        </svg>
+        <transition name="fade">
+          <svg v-if="menuVisible">
+            <use xlink:href="#icon-close"></use>
+          </svg>
+          <svg v-else>
+            <use xlink:href="#icon-zhedie-up"></use>
+          </svg>
+        </transition>
       </span>
       <router-link to="/">
         <svg class="fanqie">
@@ -32,7 +37,7 @@ export default {
     const toggleMenu = () => {
       menuVisible.value = !menuVisible.value;
     };
-    return { toggleMenu };
+    return { toggleMenu, menuVisible };
   },
 };
 </script>
