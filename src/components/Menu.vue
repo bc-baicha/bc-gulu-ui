@@ -68,6 +68,20 @@ aside {
       .router-link-active {
         background: $lightbgc;
         border-right: 3px solid $deepbgc;
+        @media (min-width: 500px) {
+          border-right: none;
+          &::after {
+            content: "";
+            display: block;
+            animation: bdrolate 0.8s;
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 3px;
+            height: 40px;
+            background-color: $deepbgc;
+          }
+        }
       }
     }
   }
@@ -77,6 +91,14 @@ aside {
     position: fixed;
     top: 85px;
     left: 0;
+  }
+}
+@keyframes bdrolate {
+  0% {
+    transform: rotateX(180deg);
+  }
+  100% {
+    transform: rotateX(0deg);
   }
 }
 </style>
