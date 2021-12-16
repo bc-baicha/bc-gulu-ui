@@ -1,6 +1,6 @@
 <template>
   <div class="topnav">
-    <div>
+    <div class="wrap">
       <span v-if="isShowtoggle" class="toggle" @click="toggleMenu">
         <svg>
           <use xlink:href="#icon-zhedie"></use>
@@ -45,23 +45,10 @@ export default {
   padding: 0 40px;
   box-shadow: 0 5px 5px rgba(#333, 0.1);
   z-index: 10;
-  .fanqie {
-    width: 32px;
-    height: 32px;
-    transition: all 0.25s;
-  }
-  .line {
-    width: 32px;
-    display: none;
-  }
-  .fanqie:hover {
-    width: 42px;
-    height: 42px;
-    transition: all 0.25s;
-  }
-  .menu {
+  .wrap {
     display: flex;
-    justify-content: space-around;
+    align-items: center;
+    height: 42px;
   }
   .toggle {
     width: 32px;
@@ -72,12 +59,32 @@ export default {
       height: 32px;
     }
   }
+  .fanqie {
+    width: 32px;
+    height: 32px;
+    transition: all 0.25s;
+  }
+  .fanqie:hover {
+    width: 42px;
+    height: 42px;
+    transition: all 0.25s;
+  }
+  .line {
+    width: 32px;
+    display: none;
+  }
+  .menu {
+    display: flex;
+    justify-content: space-around;
+  }
+
   @media (max-width: 500px) {
     > .menu {
       display: none;
     }
     .toggle {
       display: inline-block;
+      margin-right: 60px;
     }
   }
 }
