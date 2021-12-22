@@ -13,7 +13,7 @@
       </span>
       <router-link to="/">
         <svg class="fanqie">
-          <use xlink:href="#icon-fanqie"></use>
+          <use xlink:href="#icon-chaye"></use>
         </svg>
       </router-link>
     </div>
@@ -54,6 +54,11 @@ export default {
     display: flex;
     align-items: center;
     height: 42px;
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
   .toggle {
     width: 32px;

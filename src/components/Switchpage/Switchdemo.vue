@@ -1,16 +1,17 @@
 <template>
-  <Switch v-model:value="y" />
+  <Showcodedemo :component="Switchdemo1" />
+  <!-- <Switchdemo1></Switchdemo1> -->
 </template>
 <script lang="ts">
-import { ref } from "vue";
-import Switch from "../../lib/Switch.vue";
+import Showcodedemo from "../Showcodedemo.vue";
+import Switchdemo1 from "./Switchdemo1.vue";
 export default {
   components: {
-    Switch,
+    Showcodedemo,
+    Switchdemo1,
   },
   setup() {
-    const y = ref<boolean>(true);
-    return { y };
+    return { Switchdemo1 };
   },
 };
 </script>
