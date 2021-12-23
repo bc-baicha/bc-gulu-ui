@@ -18,7 +18,7 @@ const router = createRouter({
     { path: '/', component: Home },
     {
       path: '/doc', component: Doc,
-      redirect: "/doc/switch",
+      redirect: "/doc/introduce",
       children: [
         { path: 'installation', component: marked(sta) },
         { path: 'introduce', component: marked(intr) },

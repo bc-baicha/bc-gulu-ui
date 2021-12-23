@@ -31,10 +31,12 @@ export default {
       overflow: auto;
       background-color: #fff;
       margin: 5px 0 0 5px;
+      padding-left: 20px;
     }
     @media (max-width: 500px) {
       main {
         margin-left: 0px;
+        padding-left: 20px;
       }
     }
   }
