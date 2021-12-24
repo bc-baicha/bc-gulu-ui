@@ -1,10 +1,15 @@
 <template>
   <div class="bc-switch_wrap">
-    <button @click="toggle" :class="{ checked: value }"><span></span></button>
+    <Button @click="toggle" :class="{ checked: value }"><span></span></Button>
   </div>
 </template>
+
 <script lang="ts">
+import Button from "./Button.vue";
 export default {
+  components: {
+    Button,
+  },
   props: {
     value: Boolean,
   },
