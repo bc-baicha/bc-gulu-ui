@@ -1,5 +1,4 @@
 <template>
-  <!-- :class="`bc-${theme} bc-${size}`" -->
   <button :disabled="disable" class="bc-button" :class="classes">
     <slot />
   </button>
