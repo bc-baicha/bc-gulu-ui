@@ -47,6 +47,7 @@ aside {
   background: #fff;
   box-shadow: 5px 0px 5px rgba(#333, 0.1);
   z-index: 5;
+  padding-top: 20px;
   > h2 {
     margin-bottom: 4px;
     margin-top: 0;
