@@ -5,8 +5,8 @@
       <component :is="component" />
     </div>
     <div class="demo-actions">
-      <Button @click="toggleCode" v-if="codeVisible">隐藏代码</Button>
-      <Button @click="toggleCode" v-else>查看代码</Button>
+      <button @click="toggleCode" v-if="codeVisible">隐藏代码</button>
+      <button @click="toggleCode" v-else>查看代码</button>
     </div>
     <div :class="'demo-code' + [codeVisible ? ' code-show ' : ' code-hidden ']">
       <pre class="language-html" v-html="html" />
@@ -15,16 +15,11 @@
 </template>
 
 <script lang="ts">
-import Button from "../lib/Button.vue";
-
 import "prismjs";
 import "prismjs/themes/prism.css";
 import { computed, ref } from "vue";
 const Prism = (window as any).Prism;
 export default {
-  components: {
-    Button,
-  },
   props: {
     component: Object,
   },
