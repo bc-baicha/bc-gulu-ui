@@ -59,7 +59,7 @@ export default {
   &.showBc {
     background: radial-gradient(
       circle at left,
-      #099191 0%,
+      #448a6c 0%,
       rgb(99, 111, 164) 100%
     );
     color: #fff;
