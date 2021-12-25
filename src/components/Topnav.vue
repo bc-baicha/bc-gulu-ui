@@ -107,6 +107,9 @@ export default {
       font-weight: 500;
       font-size: 16px;
     }
+    a:hover {
+      color: #1890ff;
+    }
   }
   @media (max-width: 500px) {
     > .menu {
