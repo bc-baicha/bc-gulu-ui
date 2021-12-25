@@ -102,7 +102,7 @@ export default {
     display: flex;
     justify-content: space-around;
     a {
-      color: #000;
+      color: #fff;
       text-decoration: none;
       font-weight: 500;
       font-size: 16px;
