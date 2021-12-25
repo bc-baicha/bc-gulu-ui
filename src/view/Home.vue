@@ -10,7 +10,7 @@
       </h1>
       <h2>基于 VUE3.0 的UI框架</h2>
       <p class="actions">
-        <a href="/">Github</a>
+        <a href="https://github.com/bc-baicha/bc-gulu-ui">Github</a>
         <router-link to="/doc">开始</router-link>
       </p>
     </header>

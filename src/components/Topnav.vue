@@ -1,5 +1,5 @@
 <template>
-  <div class="topnav">
+  <div class="topnav" :class="{ showBc: showColor }">
     <div class="wrap">
       <span v-if="isShowtoggle" class="toggle" @click="toggleMenu">
         <transition name="fade">
@@ -18,7 +18,9 @@
       </router-link>
     </div>
     <div class="menu">
-      <span>文档</span>
+      <a target="_blank" href="https://github.com/bc-baicha/bc-gulu-ui"
+        >Github</a
+      >
     </div>
   </div>
 </template>
@@ -30,6 +32,10 @@ export default {
     isShowtoggle: {
       type: Boolean,
       default: true,
+    },
+    showColor: {
+      type: Boolean,
+      default: false,
     },
   },
   setup() {
@@ -50,6 +56,14 @@ export default {
   padding: 0 40px;
   box-shadow: 0 5px 5px rgba(#333, 0.1);
   z-index: 10;
+  &.showBc {
+    background: radial-gradient(
+      circle at left,
+      #099191 0%,
+      rgb(99, 111, 164) 100%
+    );
+    color: #fff;
+  }
   .wrap {
     display: flex;
     align-items: center;
@@ -87,8 +101,13 @@ export default {
   .menu {
     display: flex;
     justify-content: space-around;
+    a {
+      color: #000;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 16px;
+    }
   }
-
   @media (max-width: 500px) {
     > .menu {
       display: none;

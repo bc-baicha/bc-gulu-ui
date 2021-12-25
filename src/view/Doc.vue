@@ -1,6 +1,6 @@
 <template>
   <div class="layout">
-    <Topnav />
+    <Topnav :showColor="true" />
     <div class="main_wrap">
       <Menu />
       <main>
