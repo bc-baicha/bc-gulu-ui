@@ -3,7 +3,7 @@
   <Showcodedemo :component="Buttonsize" />
 </template>
 <script lang="ts">
-import Buttonsize from "./Buttonsize.vue";
+import Buttonsize from "./components/Buttonsize.vue";
 export default {
   components: {
     Buttonsize,
