@@ -1,0 +1,164 @@
+$public: #1890ff;
+$success: #52c41a;
+$warning: #ffc53d;
+$danger: #ff4d4f;
+.bc-button {
+  padding: 10px 20px;
+  text-align: center;
+  background-color: #fff;
+  border: solid 1px #ccc;
+  border-radius: 2px;
+  cursor: pointer;
+  margin-right: 20px;
+  font-size: 15px;
+  font-weight: 400;
+}
+.bc-button:hover {
+  color: $public;
+}
+.bc-button:focus {
+  border-color: $public;
+  color: $public;
+  animation: boxShadowColor 0.5s linear 1;
+}
+@keyframes boxShadowColor {
+  0% {
+    box-shadow: 0px 0px 1px;
+  }
+  25% {
+    box-shadow: 0px 0px 2px;
+  }
+  50% {
+    box-shadow: 0px 0px 3px;
+  }
+  75% {
+    box-shadow: 0px 0px 4px;
+  }
+  100% {
+    box-shadow: 0px 0px 1px;
+  }
+}
+.bc-large {
+  padding: 5px 10px;
+}
+.bc-big {
+  padding: 12px 35px;
+}
+.bc-primay {
+  background-color: $public;
+  color: #fff;
+  &:hover {
+    color: #fff;
+  }
+  &:focus {
+    color: #fff;
+    animation: boxShadowprimay 0.5s linear 1;
+  }
+}
+.bc-success {
+  background-color: $success;
+  color: #fff;
+  border-color: $success;
+  &:hover {
+    color: #fff;
+  }
+  &:focus {
+    color: #fff;
+    border-color: $success;
+    animation: boxShadowsuccess 0.5s linear 1;
+  }
+}
+.bc-warning {
+  background-color: $warning;
+  color: #fff;
+  border-color: $warning;
+  &:hover {
+    color: #fff;
+  }
+  &:focus {
+    color: #fff;
+    border-color: $warning;
+    animation: boxShadowwarning 0.5s linear 1;
+  }
+}
+.bc-danger {
+  background-color: $danger;
+  color: #fff;
+  border-color: $danger;
+  &:hover {
+    color: #fff;
+  }
+  &:focus {
+    color: #fff;
+    border-color: $danger;
+    animation: boxShadowdanger 0.5s linear 1;
+  }
+}
+@keyframes boxShadowprimay {
+  0% {
+    box-shadow: $public 0px 0px 1px;
+  }
+  25% {
+    box-shadow: $public 0px 0px 3px;
+  }
+  50% {
+    box-shadow: $public 0px 0px 5px;
+  }
+  75% {
+    box-shadow: $public 0px 0px 6px;
+  }
+  100% {
+    box-shadow: $public 0px 0px 1px;
+  }
+}
+@keyframes boxShadowsuccess {
+  0% {
+    box-shadow: $success 0px 0px 1px;
+  }
+  25% {
+    box-shadow: $success 0px 0px 3px;
+  }
+  50% {
+    box-shadow: $success 0px 0px 5px;
+  }
+  75% {
+    box-shadow: $success 0px 0px 6px;
+  }
+  100% {
+    box-shadow: $success 0px 0px 1px;
+  }
+}
+@keyframes boxShadowwarning {
+  0% {
+    box-shadow: $warning 0px 0px 1px;
+  }
+  25% {
+    box-shadow: $warning 0px 0px 3px;
+  }
+  50% {
+    box-shadow: $warning 0px 0px 5px;
+  }
+  75% {
+    box-shadow: $warning 0px 0px 6px;
+  }
+  100% {
+    box-shadow: $warning 0px 0px 1px;
+  }
+}
+@keyframes boxShadowdanger {
+  0% {
+    box-shadow: $danger 0px 0px 1px;
+  }
+  25% {
+    box-shadow: $danger 0px 0px 3px;
+  }
+  50% {
+    box-shadow: $danger 0px 0px 5px;
+  }
+  75% {
+    box-shadow: $danger 0px 0px 6px;
+  }
+  100% {
+    box-shadow: $danger 0px 0px 1px;
+  }
+}
