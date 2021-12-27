@@ -13,7 +13,7 @@ export default {
     },
     size: {
       type: String,
-      default: "normal",
+      default: "middle",
     },
     disable: {
       type: Boolean,
@@ -34,13 +34,50 @@ export default {
     });
     return { classes };
   },
-
-  // computed: { //vue2的语法
-  //   classes: function () {
-  //     return {
-  //       [`bc-${this.theme}`]: this.theme,
-  //     };
-  //   },
-  // },
 };
 </script>
+<style lang="scss">
+$hover: #1890ff;
+.bc-button {
+  padding: 10px 20px;
+  text-align: center;
+  background-color: #fff;
+  border: solid 1px #ccc;
+  border-radius: 2px;
+  cursor: pointer;
+  margin-right: 20px;
+  font-size: 15px;
+  font-weight: 400;
+}
+.bc-button:focus {
+  border-color: $hover;
+  color: $hover;
+  animation: boxShadowColor 0.5s linear 1;
+}
+@keyframes boxShadowColor {
+  0% {
+    box-shadow: 0px 0px 1px;
+  }
+  25% {
+    box-shadow: 0px 0px 2px;
+  }
+  50% {
+    box-shadow: 0px 0px 3px;
+  }
+  75% {
+    box-shadow: 0px 0px 4px;
+  }
+  100% {
+    box-shadow: 0px 0px 1px;
+  }
+}
+.bc-button:hover {
+  color: $hover;
+}
+.bc-large {
+  padding: 5px 10px;
+}
+.bc-big {
+  padding: 12px 35px;
+}
+</style>
