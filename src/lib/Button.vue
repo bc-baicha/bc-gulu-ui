@@ -10,7 +10,7 @@ export default {
   props: {
     theme: {
       type: String,
-      default: "button",
+      default: "",
     },
     size: {
       type: String,
@@ -24,13 +24,18 @@ export default {
       type: Boolean,
       default: false,
     },
+    shape: {
+      type: String,
+      default: "",
+    },
   },
   setup(props) {
-    const { theme, size } = props;
+    const { theme, size, shape } = props;
     const classes = computed(() => {
       return {
         [`bc-${theme}`]: theme,
         [`bc-${size}`]: size,
+        [`bc-${shape}`]: shape,
       };
     });
     return { classes };

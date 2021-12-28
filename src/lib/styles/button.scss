@@ -162,3 +162,14 @@ $danger: #ff4d4f;
     box-shadow: $danger 0px 0px 1px;
   }
 }
+.bc-circle {
+  padding: 0px;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.bc-round {
+  border-radius: 40px;
+}
