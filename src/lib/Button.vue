@@ -1,6 +1,9 @@
 <template>
-  <button :disabled="disable" class="bc-button" :class="classes">
-    <slot />
+  <button :disabled="disable || loading" class="bc-button" :class="classes">
+    <div class="bc-button-wrap">
+      <span v-if="loading" class="bc-loadingIndicator"></span>
+      <slot />
+    </div>
   </button>
 </template>
 <script lang="ts">
@@ -30,7 +33,7 @@ export default {
     },
   },
   setup(props) {
-    const { theme, size, shape } = props;
+    const { theme, size, shape, loading } = props;
     const classes = computed(() => {
       return {
         [`bc-${theme}`]: theme,
