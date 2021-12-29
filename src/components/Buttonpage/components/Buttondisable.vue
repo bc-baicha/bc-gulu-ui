@@ -2,8 +2,8 @@
 支持disable
 </demo>
 <template>
-  <Button disabled="true"></Button>
-  <Button disabled="true">circle</Button>
+  <Button :disabled="true"></Button>
+  <Button :disabled="true">circle</Button>
   <Button theme="primay" @click="onDisable" :disabled="disable">circle</Button>
 </template>
 <script lang="ts">

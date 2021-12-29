@@ -1,14 +1,20 @@
 <template>
-  <Showcodedemo :component="Switchdemo1" />
+  <Showcodedemo :component="Switchdefault" />
+  <Showcodedemo :component="Switchtext" />
+  <Showcodedemo :component="Switchdisable" />
 </template>
 <script lang="ts">
-import Switchdemo1 from "./Switchdemo1.vue";
+import Switchdefault from "./components/Switchdefault.vue";
+import Switchtext from "./components/Switchtext.vue";
+import Switchdisable from "./components/Switchdisable.vue";
 export default {
   components: {
-    Switchdemo1,
+    Switchdefault,
+    Switchtext,
+    Switchdisable,
   },
   setup() {
-    return { Switchdemo1 };
+    return { Switchdefault, Switchtext, Switchdisable };
   },
 };
 </script>

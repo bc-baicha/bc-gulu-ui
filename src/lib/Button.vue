@@ -33,7 +33,7 @@ export default {
     },
   },
   setup(props) {
-    const { theme, size, shape, loading } = props;
+    const { theme, size, shape } = props;
     const classes = computed(() => {
       return {
         [`bc-${theme}`]: theme,
