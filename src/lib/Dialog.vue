@@ -3,17 +3,19 @@
     <Teleport to="body">
       <div class="bc-dialog-overlay" @click="closeClickOverlay"></div>
       <div class="bc-dialog-wrapper">
-        <div class="bc-dialog">
+        <div class="bc-dialog" ref="settingWidth">
           <header>
             {{ title }}
             <span @click="onClose" class="bc-dialog-close"></span>
           </header>
-          <main>
+          <main ref="settingHeight">
             <slot name="content" />
           </main>
           <footer>
             <Button @click="onClose">{{ cancelText }}</Button>
-            <Button theme="primay" @click="onClose">{{ okText }}</Button>
+            <Button :style="{ margin: 0 }" theme="primay" @click="onClose">{{
+              okText
+            }}</Button>
           </footer>
         </div>
       </div>
@@ -21,6 +23,7 @@
   </template>
 </template>
 <script lang="ts">
+import { onMounted, ref, watchEffect } from "vue";
 import "./styles/dialog.scss";
 import Button from "./Button.vue";
 export default {
@@ -45,11 +48,16 @@ export default {
       type: String,
       default: "OK",
     },
+    width: Number,
+    height: Number,
   },
   components: {
     Button,
   },
   setup(props, context) {
+    const { width, height } = props;
+    const settingWidth = ref<HTMLDivElement>();
+    const settingHeight = ref<HTMLDivElement>();
     const onClose = () => {
       context.emit("update:visible", false);
     };
@@ -58,9 +66,22 @@ export default {
         onClose();
       }
     };
+    onMounted(() => {
+      watchEffect(() => {
+        if (width && settingWidth.value) {
+          settingWidth.value.style.width = width + "px";
+        }
+        if (height && settingHeight.value) {
+          settingHeight.value.style.maxHeight = height - 48 + "px";
+          settingHeight.value.style.overflowX = "auto";
+        }
+      });
+    });
     return {
       onClose,
       closeClickOverlay,
+      settingWidth,
+      settingHeight,
     };
   },
 };

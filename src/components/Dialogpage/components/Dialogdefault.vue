@@ -1,9 +1,9 @@
 <demo>
-Dialog基础用法
+基础用法
 </demo>
 <template>
-  <Button theme="primay" @click="onChangeVisible"> 点击 </Button>
-  <Dialog v-model:visible="visible" :onCloseOverlay="true">
+  <Button theme="primay" @click="onChangeVisible">点击</Button>
+  <Dialog v-model:visible="visible">
     <template v-slot:content>
       <div>这是内容</div>
     </template>
