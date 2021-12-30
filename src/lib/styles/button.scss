@@ -4,7 +4,7 @@ $warning: #ffc53d;
 $danger: #ff4d4f;
 .bc-button {
   text-align: center;
-  padding: 10px 20px;
+  padding: 8px 15px;
   background-color: #fff;
   border: solid 1px #ccc;
   border-radius: 2px;
@@ -21,6 +21,7 @@ $danger: #ff4d4f;
 }
 .bc-button:hover {
   color: $public;
+  border-color: $public;
   &[disabled] {
     color: #fff;
   }
@@ -56,8 +57,10 @@ $danger: #ff4d4f;
 .bc-primay {
   background-color: $public;
   color: #fff;
+  border-color: $public;
   &:hover {
     color: #fff;
+    border-color: $public;
   }
   &:focus {
     color: #fff;
@@ -70,6 +73,7 @@ $danger: #ff4d4f;
   border-color: $success;
   &:hover {
     color: #fff;
+    border-color: $success;
   }
   &:focus {
     color: #fff;
@@ -83,6 +87,7 @@ $danger: #ff4d4f;
   border-color: $warning;
   &:hover {
     color: #fff;
+    border-color: $warning;
   }
   &:focus {
     color: #fff;
@@ -96,6 +101,7 @@ $danger: #ff4d4f;
   border-color: $danger;
   &:hover {
     color: #fff;
+    border-color: $danger;
   }
   &:focus {
     color: #fff;
