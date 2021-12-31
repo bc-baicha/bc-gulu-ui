@@ -17,8 +17,8 @@
   </Dialog>
 </template>
 <script lang="ts">
-import { Dialog } from "../../../lib/index";
 import { ref } from "vue";
+import { Dialog } from "../../../lib/index";
 import { Button } from "../../../lib/index";
 export default {
   components: {

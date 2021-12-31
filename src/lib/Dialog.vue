@@ -4,18 +4,30 @@
       <div class="bc-dialog-overlay" @click="closeClickOverlay"></div>
       <div class="bc-dialog-wrapper">
         <div class="bc-dialog" ref="settingWidth">
-          <header>
+          <header v-if="!info">
             {{ title }}
             <span @click="onClose" class="bc-dialog-close"></span>
           </header>
           <main ref="settingHeight">
+            <svg v-if="info">
+              <use :xlink:href="typeName(typeInfo)"></use>
+            </svg>
             <slot name="content" />
           </main>
           <footer>
-            <Button @click="onClose">{{ cancelText }}</Button>
-            <Button :style="{ margin: 0 }" theme="primay" @click="onClose">{{
-              okText
-            }}</Button>
+            <Button
+              :style="{ margin: 0 }"
+              @click="onClose"
+              theme="primay"
+              v-if="info"
+              >知道了</Button
+            >
+            <div v-else>
+              <Button @click="onClose">{{ cancelText }}</Button>
+              <Button :style="{ margin: 0 }" theme="primay" @click="onClose">{{
+                okText
+              }}</Button>
+            </div>
           </footer>
         </div>
       </div>
@@ -23,7 +35,7 @@
   </template>
 </template>
 <script lang="ts">
-import { onMounted, ref, watchEffect } from "vue";
+import { computed, onMounted, ref, watchEffect } from "vue";
 import "./styles/dialog.scss";
 import Button from "./Button.vue";
 export default {
@@ -48,6 +60,14 @@ export default {
       type: String,
       default: "OK",
     },
+    info: {
+      type: Boolean,
+      default: false,
+    },
+    typeInfo: {
+      type: String,
+      default: "info",
+    },
     width: Number,
     height: Number,
   },
@@ -55,7 +75,7 @@ export default {
     Button,
   },
   setup(props, context) {
-    const { width, height } = props;
+    const { width, height, typeInfo } = props;
     const settingWidth = ref<HTMLDivElement>();
     const settingHeight = ref<HTMLDivElement>();
     const onClose = () => {
@@ -77,11 +97,15 @@ export default {
         }
       });
     });
+    const typeName = (value) => {
+      return `#icon-${value}`;
+    };
     return {
       onClose,
       closeClickOverlay,
       settingWidth,
       settingHeight,
+      typeName,
     };
   },
 };

@@ -39,6 +39,13 @@ $border-color: #f0f0f0;
     max-height: 448px;
     overflow: auto;
     padding: 24px;
+    display: flex;
+    align-items: center;
+    svg {
+      width: 23px;
+      height: 23px;
+      margin-right: 10px;
+    }
   }
   > footer {
     border-top: 1px solid $border-color;
