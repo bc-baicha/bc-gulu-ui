@@ -3,13 +3,13 @@
     <div class="bc-tabs-nav" ref="container">
       <div
         class="bc-tabs-nav-item"
-        v-for="(t, index) in titles"
+        v-for="(t, index) in titleArr"
         :ref="
           (el) => {
-            if (t === selected) selectedItem = el;
+            if (t === selectTitle) selectedItem = el;
           }
         "
-        :class="{ selected: t === selected }"
+        :class="{ selected: t === selectTitle }"
         :key="index"
         @click="onChange(t)"
       >
@@ -21,42 +21,42 @@
       <component
         class="bc-tabs-content-item"
         :is="current"
-        :key="current.props.title"
+        :key="current.props.tab"
       />
     </div>
   </div>
 </template>
 <script lang="ts">
 import Tab from "./Tab.vue";
-import { computed, onMounted, ref, watchEffect } from "vue";
+import { computed, onMounted, reactive, ref, watchEffect } from "vue";
 export default {
   props: {
-    selected: {
-      type: String,
-      default: "Tab1",
-    },
+    title: String,
   },
   setup(props, context) {
     const selectedItem = ref<HTMLDivElement>(null);
     const indicator = ref<HTMLDivElement>(null);
     const container = ref<HTMLDivElement>(null);
     const defaults = context.slots.default();
+    const selectTitle = ref<String>("");
     //判断子组件的类型
     defaults.forEach((tag) => {
       if (tag.type !== Tab) {
         throw new Error("Tabs 的子组件必须是Tab");
       }
     });
-    const current = computed(() => {
-      return defaults.find((tag) => tag.props.title === props.selected);
-    });
     //获取到所有的title值
-    const titles = defaults.map((tag) => {
-      return tag.props.title;
+    const titleArr = defaults.map((tag) => {
+      return tag.props.tab;
+    });
+    const current = computed(() => {
+      selectTitle.value = props.title ? props.title : titleArr[0];
+      let title = props.title ? props.title : titleArr[0];
+      return defaults.find((tag) => tag.props.tab === title);
     });
     //改变传入title的值
     const onChange = (value) => {
-      context.emit("update:selected", value);
+      context.emit("update:title", value);
     };
     onMounted(() => {
       watchEffect(() => {
@@ -70,12 +70,13 @@ export default {
     });
     return {
       defaults,
-      titles,
+      titleArr,
       onChange,
       selectedItem,
       indicator,
       container,
       current,
+      selectTitle,
     };
   },
 };

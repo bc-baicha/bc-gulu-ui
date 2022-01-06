@@ -2,9 +2,9 @@
 基础用法
 </demo>
 <template>
-  <Tabs v-model:selected="x">
-    <Tab title="Tab1">内容1</Tab>
-    <Tab title="Tab2">内容2</Tab>
+  <Tabs v-model:title="title">
+    <Tab tab="Tab1">内容1</Tab>
+    <Tab tab="Tab2">内容2</Tab>
   </Tabs>
 </template>
 <script lang="ts">
@@ -17,8 +17,8 @@ export default {
     Tab,
   },
   setup() {
-    const x = ref();
-    return { x };
+    const title = ref();
+    return { title };
   },
 };
 </script>
