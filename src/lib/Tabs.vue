@@ -33,6 +33,7 @@ export default {
   props: {
     selected: {
       type: String,
+      default: "Tab1",
     },
   },
   setup(props, context) {
@@ -80,7 +81,7 @@ export default {
 };
 </script>
 <style lang="scss">
-$blue: #40a9ff;
+$blue: #1890ff;
 $color: #333;
 $border-color: #d9d9d9;
 .bc-tabs {
@@ -93,12 +94,16 @@ $border-color: #d9d9d9;
       padding: 8px 0;
       margin: 0 16px;
       cursor: pointer;
+      font-weight: 500;
       &:first-child {
         margin-left: 0;
       }
       &.selected {
         color: $blue;
       }
+    }
+    &-item:hover {
+      color: $blue;
     }
     &-indicator {
       position: absolute;
