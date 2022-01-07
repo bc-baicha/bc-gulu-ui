@@ -3,17 +3,21 @@
     <div class="bc-tabs-nav" ref="container">
       <div
         class="bc-tabs-nav-item"
-        v-for="(t, index) in titleArr"
+        v-for="(item, index) in titleArr"
         :ref="
           (el) => {
-            if (t === selectTitle) selectedItem = el;
+            if (item.tab === selectTitle) selectedItem = el;
           }
         "
-        :class="{ selected: t === selectTitle }"
+        :class="{ selected: item.tab === selectTitle, disable: item.disable }"
         :key="index"
-        @click="onChange(t)"
+        @click="
+          {
+            item.disable ? '' : onChange(item.tab);
+          }
+        "
       >
-        {{ t }}
+        {{ item.tab }}
       </div>
       <div class="bc-tabs-nav-indicator" ref="indicator"></div>
     </div>
@@ -28,10 +32,14 @@
 </template>
 <script lang="ts">
 import Tab from "./Tab.vue";
-import { computed, onMounted, reactive, ref, watchEffect } from "vue";
+import { computed, onMounted, ref, watchEffect } from "vue";
 export default {
   props: {
     title: String,
+    disable: {
+      type: Boolean,
+      default: false,
+    },
   },
   setup(props, context) {
     const selectedItem = ref<HTMLDivElement>(null);
@@ -47,11 +55,11 @@ export default {
     });
     //获取到所有的title值
     const titleArr = defaults.map((tag) => {
-      return tag.props.tab;
+      return tag.props;
     });
     const current = computed(() => {
-      selectTitle.value = props.title ? props.title : titleArr[0];
-      let title = props.title ? props.title : titleArr[0];
+      selectTitle.value = props.title ? props.title : titleArr[0].tab;
+      let title = props.title ? props.title : titleArr[0].tab;
       return defaults.find((tag) => tag.props.tab === title);
     });
     //改变传入title的值
@@ -68,6 +76,7 @@ export default {
         indicator.value.style.left = left + "px";
       });
     });
+
     return {
       defaults,
       titleArr,
@@ -102,9 +111,16 @@ $border-color: #d9d9d9;
       &.selected {
         color: $blue;
       }
+      &.disable {
+        color: #00000040;
+        cursor: not-allowed;
+      }
     }
     &-item:hover {
       color: $blue;
+      &.disable {
+        color: #00000040;
+      }
     }
     &-indicator {
       position: absolute;
