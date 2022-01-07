@@ -17,7 +17,8 @@
           }
         "
       >
-        {{ item.tab }}
+        <img v-if="item.icon" :src="item.icon" alt="" />
+        <span>{{ item.tab }}</span>
       </div>
       <div class="bc-tabs-nav-indicator" ref="indicator"></div>
     </div>
@@ -39,6 +40,10 @@ export default {
     disable: {
       type: Boolean,
       default: false,
+    },
+    icon: {
+      type: String,
+      default: "",
     },
   },
   setup(props, context) {
@@ -101,10 +106,14 @@ $border-color: #d9d9d9;
     border-bottom: 1px solid $border-color;
     position: relative;
     &-item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       padding: 8px 0;
       margin: 0 16px;
       cursor: pointer;
       font-weight: 500;
+      font-size: 14px;
       &:first-child {
         margin-left: 0;
       }
@@ -114,6 +123,13 @@ $border-color: #d9d9d9;
       &.disable {
         color: #00000040;
         cursor: not-allowed;
+      }
+      img {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        margin-right: 3px;
+        margin-bottom: 2px;
       }
     }
     &-item:hover {

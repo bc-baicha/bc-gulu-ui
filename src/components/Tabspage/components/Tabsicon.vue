@@ -1,10 +1,10 @@
 <demo>
-基础用法
+  图标标签
 </demo>
 <template>
   <Tabs v-model:title="title">
-    <Tab tab="Tab1">内容1</Tab>
-    <Tab tab="Tab2">内容2</Tab>
+    <Tab tab="Tab1" icon="http://33h.co/kxfnt">内容1</Tab>
+    <Tab tab="Tab2" icon="http://33h.co/kxfnc">内容2</Tab>
   </Tabs>
 </template>
 <script lang="ts">
