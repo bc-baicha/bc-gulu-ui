@@ -6,10 +6,13 @@
         v-for="(item, index) in titleArr"
         :ref="
           (el) => {
-            if (item.tab === selectTitle) selectedItem = el;
+            if (judgSelected(item.tab, selectTitle)) selectedItem = el;
           }
         "
-        :class="{ selected: item.tab === selectTitle, disable: item.disable }"
+        :class="{
+          selected: judgSelected(item.tab, selectTitle),
+          disable: item.disable,
+        }"
         :key="index"
         @click="
           {
@@ -17,7 +20,15 @@
           }
         "
       >
-        <img v-if="item.icon" :src="item.icon" alt="" />
+        <svg v-if="item.icon">
+          <use
+            :xlink:href="`#icon-${
+              judgSelected(item.tab, selectTitle)
+                ? item.icon + '-selected'
+                : item.icon
+            }`"
+          ></use>
+        </svg>
         <span>{{ item.tab }}</span>
       </div>
       <div class="bc-tabs-nav-indicator" ref="indicator"></div>
@@ -81,6 +92,9 @@ export default {
         indicator.value.style.left = left + "px";
       });
     });
+    const judgSelected = (tab, selectTab) => {
+      return tab === selectTab;
+    };
 
     return {
       defaults,
@@ -91,6 +105,7 @@ export default {
       container,
       current,
       selectTitle,
+      judgSelected,
     };
   },
 };
@@ -124,8 +139,7 @@ $border-color: #d9d9d9;
         color: #00000040;
         cursor: not-allowed;
       }
-      img {
-        display: inline-block;
+      svg {
         width: 10px;
         height: 10px;
         margin-right: 3px;
