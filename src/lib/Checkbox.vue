@@ -1,6 +1,7 @@
 <template>
-  <div class="checkbox-wrap" @click="disable ? '' : onChoose()">
+  <div class="checkbox-wrap">
     <div
+      @click="disable ? '' : onChoose(value)"
       class="choose"
       :class="{ selected: choose, disable: disable }"
       :style="{ borderColor: disable ? '#ddd' : '' }"
@@ -9,7 +10,7 @@
         <use xlink:href="#icon-duihao"></use>
       </svg>
     </div>
-    <div class="textName">Apple</div>
+    <div class="textName">{{ value }}</div>
   </div>
 </template>
 <script lang="ts">
@@ -28,13 +29,17 @@ export default {
       type: Function,
       default: () => {},
     },
+    value: {
+      type: String || Number,
+      defalut: "",
+    },
   },
   setup(props, context) {
     const { defaultChecked, onChange } = props;
     const choose = ref(defaultChecked);
-    const onChoose = () => {
+    const onChoose = (value) => {
       if (onChange) {
-        onChange(!choose.value);
+        onChange(!choose.value, value);
       }
       choose.value = !choose.value;
     };
@@ -47,7 +52,6 @@ $c: #1890ff;
 .checkbox-wrap {
   display: flex;
   align-items: center;
-  cursor: pointer;
 }
 .choose {
   position: relative;
@@ -58,9 +62,11 @@ $c: #1890ff;
   height: 14px;
   border: solid 1px #ccc;
   border-radius: 2px;
+  cursor: pointer;
   svg {
     width: 14px;
     height: 14px;
+    cursor: pointer;
   }
   &.selected {
     background-color: $c;

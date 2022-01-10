@@ -2,7 +2,7 @@
 基础用法
 </demo>
 <template>
-  <Checkbox :onChange="onChange" />
+  <Checkbox :onChange="onChange" value="Apple" />
 </template>
 <script lang="ts">
 import { Checkbox } from "../../../lib/index";
@@ -11,8 +11,8 @@ export default {
     Checkbox,
   },
   setup() {
-    const onChange = (value: Boolean) => {
-      console.log(value);
+    const onChange = (status, value) => {
+      console.log(status, value);
     };
     return {
       onChange,

@@ -2,8 +2,8 @@
 支持diable
 </demo>
 <template>
-  <Checkbox :disable="true" />
-  <Checkbox :disable="true" :defaultChecked="true" />
+  <Checkbox :disable="true" value="Apple" />
+  <Checkbox :disable="true" :defaultChecked="true" value="Apple" />
 </template>
 <script lang="ts">
 import { Checkbox } from "../../../lib/index";
