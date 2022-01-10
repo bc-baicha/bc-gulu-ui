@@ -14,11 +14,7 @@
           disable: item.disable,
         }"
         :key="index"
-        @click="
-          {
-            item.disable ? '' : onChange(item.tab);
-          }
-        "
+        @click="item.disable ? '' : onChange(item.tab)"
       >
         <svg v-if="item.icon">
           <use

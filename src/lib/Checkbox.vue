@@ -1,6 +1,10 @@
 <template>
-  <div class="checkbox-wrap" @click="onChoose">
-    <div class="choose" :class="{ selected: choose }">
+  <div class="checkbox-wrap" @click="disable ? '' : onChoose()">
+    <div
+      class="choose"
+      :class="{ selected: choose, disable: disable }"
+      :style="{ borderColor: disable ? '#ddd' : '' }"
+    >
       <svg v-if="choose">
         <use xlink:href="#icon-duihao"></use>
       </svg>
@@ -12,6 +16,10 @@
 export default {
   props: {
     choose: {
+      type: Boolean,
+      default: false,
+    },
+    disable: {
       type: Boolean,
       default: false,
     },
@@ -48,6 +56,11 @@ $c: #1890ff;
     background-color: $c;
     border-color: $c;
     animation: boxShadowprimay 0.5s linear 1;
+  }
+  &.disable {
+    background-color: #ddd;
+    border-color: #ddd;
+    cursor: not-allowed;
   }
 }
 .choose:hover {
