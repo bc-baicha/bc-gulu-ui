@@ -2,19 +2,20 @@
 基础用法
 </demo>
 <template>
-  <Checkbox v-model:choose="choose" />
+  <Checkbox :onChange="onChange" />
 </template>
 <script lang="ts">
-import { ref } from "vue";
 import { Checkbox } from "../../../lib/index";
 export default {
   components: {
     Checkbox,
   },
   setup() {
-    const choose = ref(false);
+    const onChange = (value: Boolean) => {
+      console.log(value);
+    };
     return {
-      choose,
+      onChange,
     };
   },
 };

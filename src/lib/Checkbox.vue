@@ -13,9 +13,10 @@
   </div>
 </template>
 <script lang="ts">
+import { ref } from "vue";
 export default {
   props: {
-    choose: {
+    defaultChecked: {
       type: Boolean,
       default: false,
     },
@@ -23,12 +24,21 @@ export default {
       type: Boolean,
       default: false,
     },
+    onChange: {
+      type: Function,
+      default: () => {},
+    },
   },
   setup(props, context) {
+    const { defaultChecked, onChange } = props;
+    const choose = ref(defaultChecked);
     const onChoose = () => {
-      context.emit("update:choose", !props.choose);
+      if (onChange) {
+        onChange(!choose.value);
+      }
+      choose.value = !choose.value;
     };
-    return { onChoose };
+    return { onChoose, choose };
   },
 };
 </script>
