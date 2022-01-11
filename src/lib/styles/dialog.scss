@@ -1,0 +1,95 @@
+$border-color: #f0f0f0;
+.bc-dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: fade_out(black, 0.5);
+  z-index: 10;
+  animation: opcityChange 0.25s linear 1;
+}
+.bc-dialog-wrapper {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 11;
+}
+.bc-dialog {
+  background: white;
+  border: 0;
+  border-radius: 2px;
+  border-color: 0 3px 6px -4px #0000001f, 0 6px 16px #00000014,
+    0 9px 28px 8px #0000000d;
+  width: 400px;
+  animation: scaleChange 0.25s linear 1;
+  > header {
+    padding: 12px 16px;
+    border-bottom: 1px solid $border-color;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 18px;
+    font-weight: 500;
+    color: #000;
+    box-sizing: border-box;
+  }
+  > main {
+    max-height: 448px;
+    overflow: auto;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    svg {
+      width: 23px;
+      height: 23px;
+      margin-right: 10px;
+    }
+  }
+  > footer {
+    border-top: 1px solid $border-color;
+    padding: 10px 16px;
+    text-align: right;
+    box-sizing: border-box;
+  }
+  &-close {
+    position: relative;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      height: 2px;
+      background: rgba($color: #000000, $alpha: 0.3);
+      width: 100%;
+      top: 50%;
+      left: 50%;
+    }
+    &::before {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+    &::after {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+  }
+}
+@keyframes opcityChange {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes scaleChange {
+  0% {
+    transform: scale(0, 0);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}

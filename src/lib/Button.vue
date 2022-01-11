@@ -1,19 +1,23 @@
 <template>
-  <button :disabled="disable" class="bc-button" :class="classes">
-    <slot />
+  <button :disabled="disable || loading" class="bc-button" :class="classes">
+    <div class="bc-button-wrap">
+      <span v-if="loading" class="bc-loadingIndicator"></span>
+      <slot />
+    </div>
   </button>
 </template>
 <script lang="ts">
 import { computed } from "vue";
+import "./styles/button.scss";
 export default {
   props: {
     theme: {
       type: String,
-      default: "button",
+      default: "",
     },
     size: {
       type: String,
-      default: "normal",
+      default: "middle",
     },
     disable: {
       type: Boolean,
@@ -23,24 +27,21 @@ export default {
       type: Boolean,
       default: false,
     },
+    shape: {
+      type: String,
+      default: "",
+    },
   },
   setup(props) {
-    const { theme, size } = props;
+    const { theme, size, shape } = props;
     const classes = computed(() => {
       return {
         [`bc-${theme}`]: theme,
         [`bc-${size}`]: size,
+        [`bc-${shape}`]: shape,
       };
     });
     return { classes };
   },
-
-  // computed: { //vue2的语法
-  //   classes: function () {
-  //     return {
-  //       [`bc-${this.theme}`]: this.theme,
-  //     };
-  //   },
-  // },
 };
 </script>

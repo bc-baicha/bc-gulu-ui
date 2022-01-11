@@ -3,17 +3,29 @@
     <div class="bc-tabs-nav" ref="container">
       <div
         class="bc-tabs-nav-item"
-        v-for="(t, index) in titles"
+        v-for="(item, index) in titleArr"
         :ref="
           (el) => {
-            if (t === selected) selectedItem = el;
+            if (judgSelected(item.tab, selectTitle)) selectedItem = el;
           }
         "
-        :class="{ selected: t === selected }"
+        :class="{
+          selected: judgSelected(item.tab, selectTitle),
+          disable: item.disable,
+        }"
         :key="index"
-        @click="onChange(t)"
+        @click="item.disable ? '' : onChange(item.tab)"
       >
-        {{ t }}
+        <svg v-if="item.icon">
+          <use
+            :xlink:href="`#icon-${
+              judgSelected(item.tab, selectTitle)
+                ? item.icon + '-selected'
+                : item.icon
+            }`"
+          ></use>
+        </svg>
+        <span>{{ item.tab }}</span>
       </div>
       <div class="bc-tabs-nav-indicator" ref="indicator"></div>
     </div>
@@ -21,7 +33,7 @@
       <component
         class="bc-tabs-content-item"
         :is="current"
-        :key="current.props.title"
+        :key="current.props.tab"
       />
     </div>
   </div>
@@ -31,8 +43,14 @@ import Tab from "./Tab.vue";
 import { computed, onMounted, ref, watchEffect } from "vue";
 export default {
   props: {
-    selected: {
+    title: String,
+    disable: {
+      type: Boolean,
+      default: false,
+    },
+    icon: {
       type: String,
+      default: "",
     },
   },
   setup(props, context) {
@@ -40,22 +58,25 @@ export default {
     const indicator = ref<HTMLDivElement>(null);
     const container = ref<HTMLDivElement>(null);
     const defaults = context.slots.default();
+    const selectTitle = ref<String>("");
     //判断子组件的类型
     defaults.forEach((tag) => {
       if (tag.type !== Tab) {
         throw new Error("Tabs 的子组件必须是Tab");
       }
     });
-    const current = computed(() => {
-      return defaults.find((tag) => tag.props.title === props.selected);
-    });
     //获取到所有的title值
-    const titles = defaults.map((tag) => {
-      return tag.props.title;
+    const titleArr = defaults.map((tag) => {
+      return tag.props;
+    });
+    const current = computed(() => {
+      selectTitle.value = props.title ? props.title : titleArr[0].tab;
+      let title = props.title ? props.title : titleArr[0].tab;
+      return defaults.find((tag) => tag.props.tab === title);
     });
     //改变传入title的值
     const onChange = (value) => {
-      context.emit("update:selected", value);
+      context.emit("update:title", value);
     };
     onMounted(() => {
       watchEffect(() => {
@@ -67,20 +88,26 @@ export default {
         indicator.value.style.left = left + "px";
       });
     });
+    const judgSelected = (tab, selectTab) => {
+      return tab === selectTab;
+    };
+
     return {
       defaults,
-      titles,
+      titleArr,
       onChange,
       selectedItem,
       indicator,
       container,
       current,
+      selectTitle,
+      judgSelected,
     };
   },
 };
 </script>
 <style lang="scss">
-$blue: #40a9ff;
+$blue: #1890ff;
 $color: #333;
 $border-color: #d9d9d9;
 .bc-tabs {
@@ -90,14 +117,35 @@ $border-color: #d9d9d9;
     border-bottom: 1px solid $border-color;
     position: relative;
     &-item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       padding: 8px 0;
       margin: 0 16px;
       cursor: pointer;
+      font-weight: 500;
+      font-size: 14px;
       &:first-child {
         margin-left: 0;
       }
       &.selected {
         color: $blue;
+      }
+      &.disable {
+        color: #00000040;
+        cursor: not-allowed;
+      }
+      svg {
+        width: 10px;
+        height: 10px;
+        margin-right: 3px;
+        margin-bottom: 2px;
+      }
+    }
+    &-item:hover {
+      color: $blue;
+      &.disable {
+        color: #00000040;
       }
     }
     &-indicator {

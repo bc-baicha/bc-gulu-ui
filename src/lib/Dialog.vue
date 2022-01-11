@@ -3,18 +3,31 @@
     <Teleport to="body">
       <div class="bc-dialog-overlay" @click="closeClickOverlay"></div>
       <div class="bc-dialog-wrapper">
-        <div class="bc-dialog">
-          <header>
-            <!-- {{ title }}  -->
-            <slot name="title" />
+        <div class="bc-dialog" ref="settingWidth">
+          <header v-if="!info">
+            {{ title }}
             <span @click="onClose" class="bc-dialog-close"></span>
           </header>
-          <main>
+          <main ref="settingHeight">
+            <svg v-if="info">
+              <use :xlink:href="typeName(typeInfo)"></use>
+            </svg>
             <slot name="content" />
           </main>
           <footer>
-            <Button @click="onClose">{{ okText }}</Button>
-            <Button @click="onClose">{{ cancelText }}</Button>
+            <Button
+              :style="{ margin: 0 }"
+              @click="onClose"
+              theme="primay"
+              v-if="info"
+              >知道了</Button
+            >
+            <div v-else>
+              <Button @click="onClose">{{ cancelText }}</Button>
+              <Button :style="{ margin: 0 }" theme="primay" @click="onClose">{{
+                okText
+              }}</Button>
+            </div>
           </footer>
         </div>
       </div>
@@ -22,6 +35,8 @@
   </template>
 </template>
 <script lang="ts">
+import { computed, onMounted, ref, watchEffect } from "vue";
+import "./styles/dialog.scss";
 import Button from "./Button.vue";
 export default {
   props: {
@@ -33,23 +48,36 @@ export default {
       type: Boolean,
       default: true,
     },
-    // title: {
-    //   type: String,
-    //   default: "标题",
-    // },
+    title: {
+      type: String,
+      default: "标题",
+    },
     cancelText: {
       type: String,
       default: "Cancel",
     },
     okText: {
       type: String,
-      default: "ok",
+      default: "OK",
     },
+    info: {
+      type: Boolean,
+      default: false,
+    },
+    typeInfo: {
+      type: String,
+      default: "info",
+    },
+    width: Number,
+    height: Number,
   },
   components: {
     Button,
   },
   setup(props, context) {
+    const { width, height, typeInfo } = props;
+    const settingWidth = ref<HTMLDivElement>();
+    const settingHeight = ref<HTMLDivElement>();
     const onClose = () => {
       context.emit("update:visible", false);
     };
@@ -58,76 +86,27 @@ export default {
         onClose();
       }
     };
+    onMounted(() => {
+      watchEffect(() => {
+        if (width && settingWidth.value) {
+          settingWidth.value.style.width = width + "px";
+        }
+        if (height && settingHeight.value) {
+          settingHeight.value.style.maxHeight = height - 48 + "px";
+          settingHeight.value.style.overflowX = "auto";
+        }
+      });
+    });
+    const typeName = (value) => {
+      return `#icon-${value}`;
+    };
     return {
       onClose,
       closeClickOverlay,
+      settingWidth,
+      settingHeight,
+      typeName,
     };
   },
 };
 </script>
-<style lang="scss" scoped>
-$radius: 4px;
-$border-color: #d9d9d9;
-.bc-dialog {
-  background: white;
-  border-radius: $radius;
-  box-shadow: 0 0 3px fade_out(black, 0.5);
-  min-width: 15em;
-  max-width: 90%;
-  &-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: fade_out(black, 0.5);
-    z-index: 10;
-  }
-  &-wrapper {
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 11;
-  }
-  > header {
-    padding: 12px 16px;
-    border-bottom: 1px solid $border-color;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 20px;
-  }
-  > main {
-    padding: 12px 16px;
-  }
-  > footer {
-    border-top: 1px solid $border-color;
-    padding: 12px 16px;
-    text-align: right;
-  }
-  &-close {
-    position: relative;
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    cursor: pointer;
-    &::before,
-    &::after {
-      content: "";
-      position: absolute;
-      height: 1px;
-      background: black;
-      width: 100%;
-      top: 50%;
-      left: 50%;
-    }
-    &::before {
-      transform: translate(-50%, -50%) rotate(-45deg);
-    }
-    &::after {
-      transform: translate(-50%, -50%) rotate(45deg);
-    }
-  }
-}
-</style>

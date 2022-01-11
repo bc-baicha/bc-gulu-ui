@@ -1,41 +1,28 @@
 <template>
-  <div>
-    <h1>这是Dialog 示例</h1>
-    <Button @click="onShow">点击</Button>
-    <Dialog
-      v-model:visible="visible"
-      :onCloseOverlay="false"
-      okText="确定"
-      cancelText="取消"
-    >
-      <template v-slot:title>
-        <strong>这是标题</strong>
-      </template>
-      <template v-slot:content>
-        <!-- 具名插槽 -->
-        <h1>则是</h1>
-        <h4>这是Dialog可配置内容</h4>
-      </template>
-    </Dialog>
-  </div>
+  <h1>Dialog 组件</h1>
+  <Showcodedemo :component="Dialogdefault" />
+  <Showcodedemo :component="Dialogmask" />
+  <Showcodedemo :component="Dialogwidth" />
+  <Showcodedemo :component="Dialoginfo" />
 </template>
 <script lang="ts">
-import Dialog from "../../lib/Dialog.vue";
-import { ref } from "vue";
-import Button from "../../lib/Button.vue";
+import Dialogdefault from "./components/Dialogdefault.vue";
+import Dialogwidth from "./components/Dialogwidth.vue";
+import Dialoginfo from "./components/Dialoginfo.vue";
+import Dialogmask from "./components/Dialogmask.vue";
 export default {
   components: {
-    Dialog,
-    Button,
+    Dialogdefault,
+    Dialogwidth,
+    Dialoginfo,
+    Dialogmask,
   },
   setup() {
-    const visible = ref(false);
-    const onShow = () => {
-      visible.value = true;
-    };
     return {
-      visible,
-      onShow,
+      Dialogdefault,
+      Dialogwidth,
+      Dialoginfo,
+      Dialogmask,
     };
   },
 };

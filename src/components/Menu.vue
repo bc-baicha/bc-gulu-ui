@@ -21,6 +21,9 @@
         <li>
           <router-link to="/doc/tabs">Tabs 组件</router-link>
         </li>
+        <li>
+          <router-link to="/doc/checkbox">Checkbox 组件</router-link>
+        </li>
       </ol>
     </aside>
   </transition>
@@ -38,12 +41,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$lightbgc: #fff9f9;
-$deepbgc: #c67085;
-$text: #6f2e6a;
+$lightbgc: #e6f7ff;
+$deepbgc: #1890ff;
+$text: #1890ff;
 aside {
-  width: 285px;
-  height: calc(100vh - 80px);
+  min-width: 285px;
+  height: calc(100vh - 100px);
   background: #fff;
   box-shadow: 5px 0px 5px rgba(#333, 0.1);
   z-index: 5;
@@ -63,11 +66,14 @@ aside {
       > a {
         position: relative;
         height: 40px;
-        color: $text;
+        color: rgba(0, 0, 0, 0.67);
+        font-weight: 400;
+        font-size: 16px;
         display: block;
         padding: 4px 50px;
         text-decoration: none;
         &:hover {
+          color: $text;
           background: $lightbgc;
           border-bottom: none;
         }
@@ -75,6 +81,7 @@ aside {
       .router-link-active {
         background: $lightbgc;
         border-right: 3px solid $deepbgc;
+        color: $text;
         @media (min-width: 500px) {
           border-right: none;
           &::after {
@@ -85,7 +92,7 @@ aside {
             top: 0;
             right: 0;
             width: 3px;
-            height: 40px;
+            height: 48px;
             background-color: $deepbgc;
           }
         }

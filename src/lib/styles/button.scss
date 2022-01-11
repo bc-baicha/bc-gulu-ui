@@ -1,0 +1,244 @@
+$public: #1890ff;
+$success: #52c41a;
+$warning: #ffc53d;
+$danger: #ff4d4f;
+.bc-button {
+  text-align: center;
+  padding: 8px 15px;
+  background-color: #fff;
+  border: solid 1px #ccc;
+  border-radius: 2px;
+  cursor: pointer;
+  margin-right: 20px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  font-weight: 400;
+  &[disabled] {
+    cursor: not-allowed;
+    color: #fff;
+    background-color: #ddd;
+    border: none;
+  }
+}
+.bc-button:hover {
+  color: $public;
+  border-color: $public;
+  &[disabled] {
+    color: #fff;
+  }
+}
+.bc-button:focus {
+  border-color: $public;
+  color: $public;
+  animation: boxShadowColor 0.5s linear 1;
+}
+@keyframes boxShadowColor {
+  0% {
+    box-shadow: 0px 0px 1px;
+  }
+  25% {
+    box-shadow: 0px 0px 2px;
+  }
+  50% {
+    box-shadow: 0px 0px 3px;
+  }
+  75% {
+    box-shadow: 0px 0px 4px;
+  }
+  100% {
+    box-shadow: 0px 0px 1px;
+  }
+}
+.bc-large {
+  padding: 5px 10px;
+}
+.bc-big {
+  padding: 12px 35px;
+}
+.bc-primay {
+  background-color: $public;
+  color: #fff;
+  border-color: $public;
+  &:hover {
+    color: #fff;
+    border-color: $public;
+  }
+  &:focus {
+    color: #fff;
+    animation: boxShadowprimay 0.5s linear 1;
+  }
+}
+.bc-success {
+  background-color: $success;
+  color: #fff;
+  border-color: $success;
+  &:hover {
+    color: #fff;
+    border-color: $success;
+  }
+  &:focus {
+    color: #fff;
+    border-color: $success;
+    animation: boxShadowsuccess 0.5s linear 1;
+  }
+}
+.bc-warning {
+  background-color: $warning;
+  color: #fff;
+  border-color: $warning;
+  &:hover {
+    color: #fff;
+    border-color: $warning;
+  }
+  &:focus {
+    color: #fff;
+    border-color: $warning;
+    animation: boxShadowwarning 0.5s linear 1;
+  }
+}
+.bc-danger {
+  background-color: $danger;
+  color: #fff;
+  border-color: $danger;
+  &:hover {
+    color: #fff;
+    border-color: $danger;
+  }
+  &:focus {
+    color: #fff;
+    border-color: $danger;
+    animation: boxShadowdanger 0.5s linear 1;
+  }
+}
+@keyframes boxShadowprimay {
+  0% {
+    box-shadow: $public 0px 0px 1px;
+  }
+  25% {
+    box-shadow: $public 0px 0px 3px;
+  }
+  50% {
+    box-shadow: $public 0px 0px 5px;
+  }
+  75% {
+    box-shadow: $public 0px 0px 6px;
+  }
+  100% {
+    box-shadow: $public 0px 0px 1px;
+  }
+}
+@keyframes boxShadowsuccess {
+  0% {
+    box-shadow: $success 0px 0px 1px;
+  }
+  25% {
+    box-shadow: $success 0px 0px 3px;
+  }
+  50% {
+    box-shadow: $success 0px 0px 5px;
+  }
+  75% {
+    box-shadow: $success 0px 0px 6px;
+  }
+  100% {
+    box-shadow: $success 0px 0px 1px;
+  }
+}
+@keyframes boxShadowwarning {
+  0% {
+    box-shadow: $warning 0px 0px 1px;
+  }
+  25% {
+    box-shadow: $warning 0px 0px 3px;
+  }
+  50% {
+    box-shadow: $warning 0px 0px 5px;
+  }
+  75% {
+    box-shadow: $warning 0px 0px 6px;
+  }
+  100% {
+    box-shadow: $warning 0px 0px 1px;
+  }
+}
+@keyframes boxShadowdanger {
+  0% {
+    box-shadow: $danger 0px 0px 1px;
+  }
+  25% {
+    box-shadow: $danger 0px 0px 3px;
+  }
+  50% {
+    box-shadow: $danger 0px 0px 5px;
+  }
+  75% {
+    box-shadow: $danger 0px 0px 6px;
+  }
+  100% {
+    box-shadow: $danger 0px 0px 1px;
+  }
+}
+.bc-circle {
+  padding: 0px;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.bc-round {
+  border-radius: 40px;
+}
+.bc-button-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.bc-loadingIndicator {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin: 0 auto;
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: rgba(0, 169, 178, 0.2);
+  margin-right: 5px;
+  &::before {
+    content: "";
+    width: 21px; // 50 * √2
+    height: 21px; // 50 * √2
+    background-color: $public;
+    position: absolute;
+    left: 50%;
+    bottom: 50%;
+    z-index: 1;
+    transform-origin: left bottom;
+    animation: rotate 1.5s infinite linear;
+  }
+  &::after {
+    content: "";
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: #fff;
+    z-index: 2;
+    border-radius: 50%;
+  }
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
