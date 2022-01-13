@@ -1,0 +1,48 @@
+.bc-coll-wrap {
+  margin-bottom: 5px;
+  .coll-header {
+    display: flex;
+    align-items: center;
+    background-color: #ddd;
+    color: #000;
+    padding: 10px 0px;
+    border-radius: 2px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    .point-left {
+      width: 18px;
+      height: 18px;
+      margin: 0px 5px;
+      font-size: 17px;
+      transition: all 0.5s;
+    }
+  }
+  .hidden-content {
+    height: 0px;
+    overflow: hidden;
+    transition: all 1s;
+  }
+  .show-content {
+    display: block;
+    transition: height 1s;
+    background-color: #fff;
+    overflow: auto;
+    border-bottom: solid 1px #ddd;
+  }
+  .show-opcity {
+    margin: 10px 10px;
+    animation: opcityChange 1s linear 1;
+  }
+  .hidden-opcity {
+    margin: 10px 10px;
+  }
+  @keyframes opcityChange {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}
