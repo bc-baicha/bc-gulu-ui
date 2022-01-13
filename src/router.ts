@@ -5,7 +5,8 @@ import Switch from './components/Switchpage/Switchdemo.vue';
 import Button from './components/Buttonpage/Buttondemo.vue';
 import Dialog from './components/Dialogpage/Dialogdemo.vue';
 import Tabs from './components/Tabspage/Tabsdemo.vue';
-import Checkbox from './components/Checkboxpage/Checkboxdemo.vue'
+import Checkbox from './components/Checkboxpage/Checkboxdemo.vue';
+import Collapse from './components/Collapsepage/Collapsedemo.vue'
 import Markeddown from './components/Markeddown.vue';
 import intr from './markeddown/introduce.md';
 import use from './markeddown/usestep.md';
@@ -29,6 +30,7 @@ const router = createRouter({
         { path: 'dialog', component: Dialog },
         { path: 'tabs', component: Tabs },
         { path: 'checkbox', component: Checkbox },
+        { path: 'collapse', component: Collapse },
       ]
     },
   ]
