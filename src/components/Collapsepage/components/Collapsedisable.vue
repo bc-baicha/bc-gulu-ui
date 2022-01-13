@@ -1,9 +1,14 @@
 <demo>
-基本用法
+支持disable
 </demo>
 <template>
   <Collapse :header="obj.header" :content="obj.content" :maxHeight="300" />
-  <Collapse :header="obj.header" :content="obj.content" :maxHeight="300" />
+  <Collapse
+    :header="obj.header"
+    :content="obj.content"
+    :maxHeight="300"
+    :disable="true"
+  />
 </template>
 <script lang="ts">
 import { reactive } from "@vue/reactivity";

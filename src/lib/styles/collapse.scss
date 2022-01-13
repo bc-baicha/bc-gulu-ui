@@ -17,6 +17,10 @@
       font-size: 17px;
       transition: all 0.5s;
     }
+    &.disable {
+      cursor: not-allowed;
+      opacity: 0.4;
+    }
   }
   .hidden-content {
     height: 0px;

@@ -1,6 +1,10 @@
 <template>
   <div class="bc-coll-wrap">
-    <div @click="changeShow" class="coll-header">
+    <div
+      @click="disable ? '' : changeShow()"
+      class="coll-header"
+      :class="{ disable: disable }"
+    >
       <svg
         class="point-left"
         :style="{ transform: show ? 'rotate(90deg)' : '' }"
@@ -30,6 +34,10 @@ export default {
     maxHeight: {
       type: Number,
       default: 100,
+    },
+    disable: {
+      type: Boolean,
+      default: false,
     },
   },
   setup(props) {
